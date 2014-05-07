@@ -10,4 +10,9 @@
   Ship.RADIUS = 10;
   Ship.COLOR = 'green';
 
+  Ship.prototype.power = function(impulse) {
+    this.vel[0] += impulse[0];
+    this.vel[0] += impulse[1];
+  }
+
 })(this);

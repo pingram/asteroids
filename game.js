@@ -43,13 +43,17 @@
   };
 
   Game.prototype.step = function() {
+    this.move();
+    this.draw();
+    this.checkCollisions();
+  };
+
+  Game.prototype.move = function() {
     this.asteroids.forEach(function(asteroid) {
       asteroid.move();
     });
     this.ship.move();
-    this.draw();
-    this.checkCollisions();
-  };
+  }
 
   Game.prototype.start = function() {
     game = this;
