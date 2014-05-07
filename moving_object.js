@@ -3,10 +3,10 @@
 
 
   var MovingObject = Asteroids.MovingObject = function (pos, vel, radius, color){
-    this.pos = pos,
-    this.vel = vel,
-    this.radius = radius,
-    this.color = color
+    this.pos = pos;
+    this.vel = vel;
+    this.radius = radius;
+    this.color = color;
   };
 
   MovingObject.prototype.move = function(){
