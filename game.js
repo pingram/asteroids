@@ -44,8 +44,17 @@
 
   Game.prototype.step = function() {
     this.move();
+    this.removeOOBAsteroids();
     this.draw();
     this.checkCollisions();
+  };
+
+  Game.prototype.removeOOBAsteroids = function() {
+    this.asteroids = this.asteroids.filter(function(asteroid) {
+      var x = asteroid.pos[0];
+      var y = asteroid.pos[1];
+      return !(x < 0 || y < 0 || x > Game.DIM_X || y > Game.DIM_Y);
+    });
   };
 
   Game.prototype.move = function() {
@@ -57,6 +66,7 @@
 
   Game.prototype.start = function() {
     game = this;
+    this.bindKeyHandlers();
     game.timerID = window.setInterval(function() {
         game.step();
       }, 30
@@ -66,4 +76,33 @@
   Game.prototype.stop = function() {
     window.clearInterval(this.timerID);
   }
+
+  Game.prototype.bindKeyHandlers = function(){
+    game = this;
+    mag = 3;
+    key('a', function(){
+      alert('you pressed a!')
+    });
+    key('up', function() {
+      game.ship.power([0, -mag]);
+    });
+    key('down', function() {
+      game.ship.power([0, mag]);
+    });
+    key('left', function() {
+      game.ship.power([-mag, 0]);
+    });
+    key('right', function() {
+      game.ship.power([mag, 0]);
+    });
+  };
 })(this);
+
+
+
+
+
+
+
+
+
