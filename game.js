@@ -5,6 +5,7 @@
     this.ctx = canvas.getContext("2d");
     this.asteroids = this.addAsteroids(10);
     this.ship = new Asteroids.Ship([(Game.DIM_X/2), (Game.DIM_Y/2)]);
+    this.bullets = [];
     this.timerID = undefined;
   };
 
@@ -39,6 +40,10 @@
       asteroid.draw(ctx);
     });
 
+    this.bullets.forEach(function (bullet) {
+      bullet.draw(ctx);
+    });
+
     this.ship.draw(ctx);
   };
 
@@ -57,9 +62,19 @@
     });
   };
 
+  Game.prototype.fireBullet = function(){
+    var bullet = this.ship.fireBullet();
+    if(bullet !== false){
+      this.bullets.push(bullet);
+    }
+  }
+
   Game.prototype.move = function() {
     this.asteroids.forEach(function(asteroid) {
       asteroid.move();
+    });
+    this.bullets.forEach(function(bullet) {
+      bullet.move();
     });
     this.ship.move();
   }
@@ -80,9 +95,6 @@
   Game.prototype.bindKeyHandlers = function(){
     game = this;
     mag = 3;
-    key('a', function(){
-      alert('you pressed a!')
-    });
     key('up', function() {
       game.ship.power([0, -mag]);
     });
@@ -94,6 +106,9 @@
     });
     key('right', function() {
       game.ship.power([mag, 0]);
+    });
+    key('space', function() {
+      game.fireBullet();
     });
   };
 })(this);
