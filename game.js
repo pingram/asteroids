@@ -32,6 +32,18 @@
     });
   }
 
+  Game.prototype.removeAsteroid = function(asteroidToRemove){
+    this.asteroids = this.asteroids.filter(function(asteroid) {
+      return (asteroid !== asteroidToRemove);
+    });
+  }
+
+  Game.prototype.removeBullet = function(bulletToRemove){
+    this.bullets = this.bullets.filter(function(bullet) {
+      return (bullet !== bulletToRemove);
+    });
+  }
+
   Game.prototype.draw = function () {
     this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     ctx = this.ctx;
@@ -63,7 +75,7 @@
   };
 
   Game.prototype.fireBullet = function(){
-    var bullet = this.ship.fireBullet();
+    var bullet = this.ship.fireBullet(this);
     if(bullet !== false){
       this.bullets.push(bullet);
     }

@@ -15,7 +15,7 @@
     this.vel[1] += impulse[1];
   };
 
-  Ship.prototype.fireBullet = function() {
+  Ship.prototype.fireBullet = function(game) {
     var ship = this;
     var bulletSpeed = 30;
     var vx = this.vel[0];
@@ -29,7 +29,7 @@
       var bulletSpeedX = Math.floor((vx / speed) * bulletSpeed);
       var bulletSpeedY = Math.floor((vy / speed) * bulletSpeed);
       var bulletVelocity = [bulletSpeedX, bulletSpeedY];
-      return (new Asteroids.Bullet(ship.pos.slice(), bulletVelocity));
+      return (new Asteroids.Bullet(ship.pos.slice(), bulletVelocity, game));
     }
   }
 
