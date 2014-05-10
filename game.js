@@ -3,7 +3,9 @@
 
   var Game = Asteroids.Game = function(canvas){
     this.ctx = canvas.getContext("2d");
-    this.asteroids = this.addAsteroids(10);
+    this.asteroids = [];
+    this.addAsteroids(10);
+    // this.asteroids = this.addAsteroids(10);
     this.ship = new Asteroids.Ship([(Game.DIM_X/2), (Game.DIM_Y/2)]);
     this.bullets = [];
     this.timerID = undefined;
@@ -49,6 +51,7 @@
       var newAsteroid = Asteroids.Asteroid.randomAsteroid(Game.DIM_X, Game.DIM_Y);
       asteroids.push(newAsteroid);
     }
+    this.asteroids = this.asteroids.concat(asteroids);
     return asteroids;
   };
 
@@ -93,7 +96,8 @@
     this.move();
     var numAsteroidsRemoved = this.removeOOBAsteroids();
     // if (numAsteroidsRemoved > 0) { debugger; }
-    this.asteroids = this.asteroids.concat(this.addAsteroids(numAsteroidsRemoved));
+    // this.asteroids = this.asteroids.concat(this.addAsteroids(numAsteroidsRemoved));
+    this.addAsteroids(numAsteroidsRemoved);
     this.draw();
     this.checkCollisions();
     this.checkOutOfBounds();

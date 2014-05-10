@@ -18,6 +18,7 @@
       if (asteroid.isCollidedWith(bullet)) {
         game.removeAsteroid(asteroid);
         game.removeBullet(bullet);
+        game.addAsteroids(1);
       };
     });
   }
