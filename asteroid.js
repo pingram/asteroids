@@ -14,6 +14,13 @@
     var pos = [];
     pos[0] = Math.floor(Math.random() * dimX);
     pos[1] = Math.floor(Math.random() * dimY);
+    var whichIndex = Math.floor(Math.random() * 2);
+    var whichVal = Math.floor(Math.random() * 2);
+    if (whichVal === 0) {
+      pos[whichIndex] = 0;
+    } else {
+      pos[whichIndex] = Asteroids.Game.DIM_X;
+    }
     var vel = randomVec(10);
     return (new Asteroid(pos, vel));
   }

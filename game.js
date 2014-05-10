@@ -91,18 +91,23 @@
 
   Game.prototype.step = function() {
     this.move();
-    this.removeOOBAsteroids();
+    var numAsteroidsRemoved = this.removeOOBAsteroids();
+    // if (numAsteroidsRemoved > 0) { debugger; }
+    this.asteroids = this.asteroids.concat(this.addAsteroids(numAsteroidsRemoved));
     this.draw();
     this.checkCollisions();
     this.checkOutOfBounds();
   };
 
+  // returns the number of asteroids removed
   Game.prototype.removeOOBAsteroids = function() {
+    var prevACount = this.asteroids.length;
     this.asteroids = this.asteroids.filter(function(asteroid) {
       var x = asteroid.pos[0];
       var y = asteroid.pos[1];
       return !(x < 0 || y < 0 || x > Game.DIM_X || y > Game.DIM_Y);
     });
+    return (prevACount - this.asteroids.length);
   };
 
   Game.prototype.fireBullet = function(){
