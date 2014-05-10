@@ -14,7 +14,6 @@
   Bullet.prototype.hitAsteroids = function() {
     var bullet = this;
     var game = this.game;
-    debugger
     game.asteroids.forEach(function(asteroid){
       if (asteroid.isCollidedWith(bullet)) {
         game.removeAsteroid(asteroid);
