@@ -23,8 +23,8 @@
     } else {
       pos[whichIndex] = Asteroids.Game.DIM_X;
     }
-    var vel = randomVec(Asteroid.MAXVEL);
     pos = Asteroid.randomPos();
+    var vel = ensureVelOffWall(pos, Asteroid.MAXVEL);
     return (new Asteroid(pos, vel));
   }
 
@@ -57,6 +57,20 @@
     // XXX- update velocity so that its abs val will not be 0 or 1
     return vec;
   }
+
+  function ensureVelOffWall(pos, maxVel) {
+    var velIntoWall = true;
+    var vel = [];
+    while (velIntoWall) {
+      velIntoWall = false;
+      vel = randomVec(maxVel);
+      if ((pos[0] === 0 && vel[0] < 0) ||
+          (pos[0] === Asteroids.Game.DIM_X && vel[0] > 0) ||
+          (pos[1] === 0 && vel[1] < 0) ||
+          (pos[1] === Asteroids.Game.DIM_X && vel[0] > 0)) {
+        velIntoWall = true;
+      }
+    }
+    return vel;
+  }
 })(this);
-
-
