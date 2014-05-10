@@ -9,6 +9,8 @@
     this.ship = new Asteroids.Ship([(Game.DIM_X/2), (Game.DIM_Y/2)]);
     this.bullets = [];
     this.timerID = undefined;
+    this.img = new Image();
+    this.img.src = 'stars-night.jpg';
   };
 
   Game.DIM_X = 600;
@@ -79,6 +81,7 @@
 
   Game.prototype.draw = function () {
     this.ctx.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
+    game.ctx.drawImage(this.img, 0, 0);
     ctx = this.ctx;
 
     this.asteroids.forEach(function (asteroid) {
@@ -99,6 +102,7 @@
     // this.asteroids = this.asteroids.concat(this.addAsteroids(numAsteroidsRemoved));
     this.addAsteroids(numAsteroidsRemoved);
     this.draw();
+
     this.checkCollisions();
     this.checkOutOfBounds();
   };
@@ -134,6 +138,11 @@
   Game.prototype.start = function() {
     game = this;
     this.bindKeyHandlers();
+    game.ctx.drawImage(this.img, 0, 0);
+    // debugger
+
+
+
     game.timerID = window.setInterval(function() {
         game.step();
       }, 30
