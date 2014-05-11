@@ -14,6 +14,7 @@
     this.timerID = undefined;
     this.img = new Image();
     this.img.src = 'stars-night.jpg';
+    this.playTime = 0;
   };
 
   Game.FPS = 30;
@@ -103,6 +104,10 @@
 
     this.draw();
 
+    this.ctx.font = "20px Arial";
+    var playTime = Math.round(this.playTime * 10) / 10;
+    this.ctx.fillText("Time: " + playTime, 20, 25);
+
     this.checkCollisions();
     this.checkOutOfBounds();
   };
@@ -143,6 +148,7 @@
 
     game.timerID = window.setInterval(function() {
         game.step();
+        game.playTime += 0.03
       }, 30
     );
   };
