@@ -51,11 +51,16 @@
   }
 
   function randomVec(maxVel){
-    var vec = [];
-    vec[0] = Math.floor(Math.random() * (maxVel * 2)) - maxVel;//- 2)) + 2;
-    vec[1] = Math.floor(Math.random() * (maxVel * 2)) - maxVel;// + 2;
-    // XXX- update velocity so that its abs val will not be 0 or 1
-    return vec;
+    var vel = [0, 0];
+    while (vel[0] < 2 && vel[1] < 2) {
+      vel[0] = randomVelScalar(maxVel);
+      vel[1] = randomVelScalar(maxVel);
+    }
+    return vel;
+  }
+
+  function randomVelScalar(maxVel) {
+    return (Math.floor(Math.random() * (maxVel * 2)) - maxVel);
   }
 
   function ensureVelOffWall(pos, maxVel, DIM_X, DIM_Y) {
