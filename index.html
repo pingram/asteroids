@@ -15,11 +15,10 @@
   <h2>Asteroids</h2>
   <script>
     var $canvas = $('<canvas>');
-    var width = 550;//document.body.clientWidth - 200;
-    var height = 500;//document.body.clientHeight - 50;
+    var width = 550;//document.body.clientWidth - 600;
+    var height = 500;//document.body.clientHeight - 100;
     $canvas.attr('height', height)
     $canvas.attr('width', width);
-    debugger
     $('body').append($canvas);
     new Asteroids.Game($canvas[0], width, height).start();
   </script>

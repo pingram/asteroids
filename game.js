@@ -16,8 +16,6 @@
     this.img.src = 'stars-night.jpg';
   };
 
-  // this.DIM_X = 550;
-  // this.DIM_Y = 550;
   Game.FPS = 30;
 
   Game.prototype.isOutOfBounds = function(pos) {
@@ -61,7 +59,6 @@
   };
 
   Game.prototype.checkCollisions = function(){
-    // debugger
     game = this;
     this.asteroids.forEach(function(asteroid){
       if (asteroid.isCollidedWith(game.ship)) {
@@ -101,10 +98,10 @@
 
   Game.prototype.step = function() {
     this.move();
+
     var numAsteroidsRemoved = this.removeOOBAsteroids();
-    // if (numAsteroidsRemoved > 0) { debugger; }
-    // this.asteroids = this.asteroids.concat(this.addAsteroids(numAsteroidsRemoved));
     this.addAsteroids(numAsteroidsRemoved);
+
     this.draw();
 
     this.checkCollisions();
@@ -113,11 +110,12 @@
 
   // returns the number of asteroids removed
   Game.prototype.removeOOBAsteroids = function() {
+    var game = this;
     var prevACount = this.asteroids.length;
     this.asteroids = this.asteroids.filter(function(asteroid) {
       var x = asteroid.pos[0];
       var y = asteroid.pos[1];
-      return !(x < 0 || y < 0 || x > this.DIM_X || y > this.DIM_Y);
+      return !(x < 0 || y < 0 || x > game.DIM_X || y > game.DIM_Y);
     });
     return (prevACount - this.asteroids.length);
   };
@@ -143,9 +141,6 @@
     game = this;
     this.bindKeyHandlers();
     game.ctx.drawImage(this.img, 0, 0);
-    // debugger
-
-
 
     game.timerID = window.setInterval(function() {
         game.step();

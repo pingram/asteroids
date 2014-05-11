@@ -1,7 +1,6 @@
 (function (root) {
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
-
   var MovingObject = Asteroids.MovingObject = function (pos, vel, radius, color){
     this.pos = pos;
     this.vel = vel;
