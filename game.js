@@ -62,7 +62,6 @@
     game = this;
     this.asteroids.forEach(function(asteroid){
       if (asteroid.isCollidedWith(game.ship)) {
-        alert('game over');
         game.stop();
       }
     });
@@ -149,6 +148,9 @@
   };
 
   Game.prototype.stop = function() {
+    this.ctx.font = "30px Arial";
+    this.ctx.fillText("Game Over", this.DIM_X / 2 - 80, this.DIM_Y / 2);
+
     window.clearInterval(this.timerID);
   }
 
