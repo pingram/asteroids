@@ -12,26 +12,26 @@
 
   Asteroid.inherits(Asteroids.MovingObject);
 
-  Asteroid.randomAsteroid = function(dimX, dimY) {
+  Asteroid.randomAsteroid = function(DIM_X, DIM_Y) {
     var pos = [];
-    pos[0] = Math.floor(Math.random() * dimX);
-    pos[1] = Math.floor(Math.random() * dimY);
+    pos[0] = Math.floor(Math.random() * DIM_X);
+    pos[1] = Math.floor(Math.random() * DIM_Y);
     var whichIndex = Math.floor(Math.random() * 2);
     var whichVal = Math.floor(Math.random() * 2);
     if (whichVal === 0) {
       pos[whichIndex] = 0;
     } else {
-      pos[whichIndex] = Asteroids.Game.DIM_X;
+      pos[whichIndex] = DIM_X;
     }
-    pos = Asteroid.randomPos();
+    pos = Asteroid.randomPos(DIM_X, DIM_Y);
     var vel = ensureVelOffWall(pos, Asteroid.MAXVEL);
     return (new Asteroid(pos, vel));
   }
 
-  Asteroid.randomPos = function() {
+  Asteroid.randomPos = function(DIM_X, DIM_Y) {
     var pos = []
-    pos[0] = Math.floor(Math.random() * Asteroids.Game.DIM_X);
-    pos[1] = Math.floor(Math.random() * Asteroids.Game.DIM_Y);
+    pos[0] = Math.floor(Math.random() * DIM_X);
+    pos[1] = Math.floor(Math.random() * DIM_Y);
     randn = Math.floor(Math.random() * 4);
     switch (randn) {
       case 0:
@@ -41,10 +41,10 @@
         pos[1] = 0;
         break;
       case 2:
-        pos[0] = Asteroids.Game.DIM_X;
+        pos[0] = DIM_X;
         break;
       case 3:
-        pos[1] = Asteroids.Game.DIM_Y;
+        pos[1] = DIM_Y;
         break;
     }
     return pos;
@@ -58,16 +58,16 @@
     return vec;
   }
 
-  function ensureVelOffWall(pos, maxVel) {
+  function ensureVelOffWall(pos, maxVel, DIM_X, DIM_Y) {
     var velIntoWall = true;
     var vel = [];
     while (velIntoWall) {
       velIntoWall = false;
       vel = randomVec(maxVel);
       if ((pos[0] === 0 && vel[0] < 0) ||
-          (pos[0] === Asteroids.Game.DIM_X && vel[0] > 0) ||
+          (pos[0] === DIM_X && vel[0] > 0) ||
           (pos[1] === 0 && vel[1] < 0) ||
-          (pos[1] === Asteroids.Game.DIM_X && vel[0] > 0)) {
+          (pos[1] === DIM_X && vel[0] > 0)) {
         velIntoWall = true;
       }
     }

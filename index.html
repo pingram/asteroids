@@ -1,6 +1,7 @@
 <!DOCTYPE = HTML>
 <html>
 <head>
+  <script type="text/javascript" src="jQuery.js"></script>
   <script type="text/javascript" src="keymaster.js"></script>
   <script type="text/javascript" src="utils.js"></script>
   <script type="text/javascript" src="moving_object.js"></script>
@@ -11,10 +12,16 @@
   <link rel="stylesheet" type="text/css" href="gamestyle.css">
 </head>
 <body>
-  <canvas width="600" height="600"></canvas>
+  <h2>Asteroids</h2>
   <script>
-      var canvas = document.getElementsByTagName("canvas")[0];
-      new Asteroids.Game(canvas).start();
+    var $canvas = $('<canvas>');
+    var width = 550;//document.body.clientWidth - 200;
+    var height = 500;//document.body.clientHeight - 50;
+    $canvas.attr('height', height)
+    $canvas.attr('width', width);
+    debugger
+    $('body').append($canvas);
+    new Asteroids.Game($canvas[0], width, height).start();
   </script>
 </body>
 </html>
