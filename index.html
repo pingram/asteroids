@@ -9,17 +9,14 @@
   <script type="text/javascript" src="bullet.js"></script>
   <script type="text/javascript" src="ship.js"></script>
   <script type="text/javascript" src="game.js"></script>
+  <script type="text/javascript" src="gameUI.js"></script>
   <link rel="stylesheet" type="text/css" href="gamestyle.css">
 </head>
 <body>
   <script>
-    var $canvas = $('<canvas>');
-    var width = window.innerWidth - 8;
-    var height = window.innerHeight - 8;
-    $canvas.attr('height', height)
-    $canvas.attr('width', width);
-    $('body').append($canvas);
-    new Asteroids.Game($canvas[0], width, height).start();
+    var gameUI = new Asteroids.GameUI();
+    // Asteroids.setUpDisplay();
+    // Asteroids.startGame();  
   </script>
 </body>
 </html>
