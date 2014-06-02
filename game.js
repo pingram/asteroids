@@ -154,8 +154,9 @@
   };
 
   Game.prototype.stop = function() {
-    this.ctx.font = "30px Arial";
-    this.ctx.fillText("Game Over", this.DIM_X / 2 - 80, this.DIM_Y / 2);
+    this.ctx.font = "50px Arial";
+    this.ctx.fillText("Game Over", this.DIM_X / 2 - 140, this.DIM_Y / 2);
+    $('canvas').addClass('over');
 
     window.clearInterval(this.timerID);
   }
