@@ -157,7 +157,6 @@
   Game.prototype.stop = function() {
     this.ctx.font = "50px Arial";
     this.ctx.fillText("Game Over", this.DIM_X / 2 - 140, this.DIM_Y / 2 + 100);
-    $('canvas').addClass('over');
 
     window.clearInterval(this.timerID);
     this.gameUI.stopGame();

@@ -5,7 +5,6 @@
     this.setUpDisplay();
     this.showDialog();
     this.installClickHandlers();
-    // this.startGame();
   }
 
   GameUI.prototype.setUpDisplay = function () {
@@ -33,18 +32,15 @@
       gameUI.startGame();
       $('canvas').css({cursor: 'none'});
     });
-    $('body').on('click', '#dialog #exit', function () {
-      gameUI.hideDialog();
-      gameUI.startGame();
-      $('canvas').css({cursor: 'none'});
-    });
   }
 
   GameUI.prototype.startGame = function () {
+    this.$canvas.removeClass('over');
     new Asteroids.Game(this, this.$canvas[0], this.width, this.height).start();
   }
 
   GameUI.prototype.stopGame = function () {
+    $('canvas').addClass('over');
     $('canvas').css({cursor: 'auto'});
     this.showDialog();
   }

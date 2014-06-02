@@ -23,17 +23,32 @@ canvas {
   display: none;
   position: absolute;
   top: 30%;
-  height: 100px;
-  left: 40%;
+  /*height: 100px;*/
   color: green;
   border: 3px solid green;
   padding: 20px;
+  text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+  #dialog {
+    left: 32.5%;
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  #dialog {
+    left: 40%;
+    width: 20%;
+  }
 }
 
 button {
   display: block;
   position: relative;
-  margin: 10px;
+  width: 50px;
+  margin: 10px auto;
   background: black;
   color: green;
   border: 1px solid green;
@@ -42,6 +57,7 @@ button {
 button:hover {
   cursor: pointer;
   cursor: hand;
+  background: #303030;
 }
 
 a, a:hover {
