@@ -33,6 +33,11 @@
       gameUI.startGame();
       $('canvas').css({cursor: 'none'});
     });
+    $('body').on('click', '#dialog #exit', function () {
+      gameUI.hideDialog();
+      gameUI.startGame();
+      $('canvas').css({cursor: 'none'});
+    });
   }
 
   GameUI.prototype.startGame = function () {
@@ -41,5 +46,6 @@
 
   GameUI.prototype.stopGame = function () {
     $('canvas').css({cursor: 'auto'});
+    this.showDialog();
   }
 })(this);
