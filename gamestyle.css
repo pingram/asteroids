@@ -14,3 +14,28 @@ canvas {
 .over {
   border: 4px solid red;
 }
+
+#dialog {
+  display: none;
+  position: absolute;
+  top: 30%;
+  height: 100px;
+  left: 40%;
+  color: green;
+  border: 3px solid green;
+  padding: 20px;
+}
+
+button {
+  display: block;
+  position: relative;
+  margin: 10px;
+  background: black;
+  color: green;
+  border: 1px solid green;
+}
+
+button:hover {
+  cursor: pointer;
+  cursor: hand;
+}

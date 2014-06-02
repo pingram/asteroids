@@ -13,10 +13,19 @@
   <link rel="stylesheet" type="text/css" href="gamestyle.css">
 </head>
 <body>
+
+  <div id="dialog">
+    Would you like to play a game?
+    <button type="button" id="play">
+      Play
+    </button>
+    <button type="button" id="exit">
+      Exit
+    </button>
+  </div>
+
   <script>
-    var gameUI = new Asteroids.GameUI();
-    // Asteroids.setUpDisplay();
-    // Asteroids.startGame();  
+    new Asteroids.GameUI();
   </script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 (function (root) {
   var Asteroids = root.Asteroids = (root.Asteroids || {});
 
-  var Game = Asteroids.Game = function(canvas, DIM_X, DIM_Y){
+  var Game = Asteroids.Game = function(gameUI, canvas, DIM_X, DIM_Y){
+    this.gameUI = gameUI;
     this.ctx = canvas.getContext("2d");
     this.DIM_X = DIM_X;
     this.DIM_Y = DIM_Y;
@@ -159,6 +160,7 @@
     $('canvas').addClass('over');
 
     window.clearInterval(this.timerID);
+    this.gameUI.stopGame();
   }
 
   Game.prototype.bindKeyHandlers = function(){
