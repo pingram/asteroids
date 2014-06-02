@@ -82,7 +82,7 @@
 
   Game.prototype.draw = function () {
     this.ctx.clearRect(0, 0, this.DIM_X, this.DIM_Y);
-    game.ctx.drawImage(this.img, 0, 0);
+    game.ctx.drawImage(this.img, 0, 0, this.DIM_X, this.DIM_Y);
     ctx = this.ctx;
 
     this.asteroids.forEach(function (asteroid) {
