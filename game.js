@@ -8,7 +8,7 @@
     this.DIM_Y = DIM_Y;
 
     this.asteroids = [];
-    this.addAsteroids(10);
+    this.addAsteroids(Math.floor(DIM_X * DIM_Y / 45000));
     this.ship = new Asteroids.Ship([(this.DIM_X/2), (this.DIM_Y/2)]);
     this.bullets = [];
 
@@ -106,8 +106,17 @@
     this.draw();
 
     this.ctx.font = "20px Arial";
-    var playTime = Math.round(this.playTime * 10) / 10;
-    this.ctx.fillText("Time: " + playTime, 20, 25);
+    this.playTime = Math.round(this.playTime * 100) / 100;
+    // if (playTime >= 2) {
+      // debugger
+    // }
+    var mod = Math.round((this.playTime % 4) * 100) / 100;
+    if (mod < 0.03 && this.playTime !== 0) {
+      this.addAsteroids(1);
+    }
+    // debugger
+    this.ctx.fillText("Time: " + this.playTime, 20, 25);
+    this.ctx.fillText("Asteroids: " + this.asteroids.length, 20, 50);
 
     this.checkCollisions();
     this.checkOutOfBounds();
