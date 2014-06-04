@@ -27,17 +27,6 @@
     );
 
     ctx.fill();
-
-//     c.fillStyle = '#ccddff';
-// c.beginPath();
-// c.moveTo(50,20);
-// c.lineTo(200,50);
-// c.lineTo(150,80);
-// c.closePath();
-// c.fill();
-// c.strokeStyle = 'rgb(0,128,0)';
-// c.lineWidth = 5;
-// c.stroke();
   };
 
   MovingObject.prototype.isCollidedWith = function(otherObject){
