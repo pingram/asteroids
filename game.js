@@ -100,7 +100,7 @@
 
     this.offset += 1;
 
-    this.drawPoly(ctx, 300, 300, 20, 0, 0, this.offset);
+    this.drawPoly(ctx, 300, 300, 20, 0, 0, false, this.offset, 0);
 
     // pts = drawPoly (ctx,cx,cy,60,7,false,0,n); 
     // ctx.fillStyle = 'rgba(1,1,1,1)';  
