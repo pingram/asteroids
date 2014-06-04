@@ -16,6 +16,8 @@
     this.img = new Image();
     this.img.src = 'stars-night.jpg';
     this.playTime = 0;
+
+    this.offset = 0;
   };
 
   Game.FPS = 30;
@@ -95,7 +97,65 @@
     });
 
     this.ship.draw(ctx);
+
+    this.offset += 1;
+
+    this.drawPoly(ctx, 300, 300, 20, 0, 0, this.offset);
+
+    // pts = drawPoly (ctx,cx,cy,60,7,false,0,n); 
+    // ctx.fillStyle = 'rgba(1,1,1,1)';  
+    // $.each(pts, function(i, value) { 
+    // ctx.fillText(i + 1, value[0] - 2,value[1] + 2); // super basic text: .fillText("string",x,y)
+    // });
+    // debugger
+
+
+
+
   };
+
+  Game.prototype.drawPoly = function (ctx,cx,cy,r,c,offset,d,a) {
+    var w      = (w)? w : 1,
+        c      = (c)? Math.max(3,c) : 3,  
+        a      = (a)? a : 0,
+        cx     = (cx)? cx : 0,
+        cy     = (cy)? cy : 0,
+        PI2    = Math.PI * 2,
+        pts    = [],
+        deg    = (d)? 0 : c / 2 * 1.5,   
+        offset = (offset)? Math.round(offset) : 0, 
+        x,y;
+        deg += a * Math.PI / 180; 
+
+        ctx.fillStyle = '#ccddff';
+        ctx.beginPath();
+        for (var i = 0; i < c; i++ ) {
+          x = cx + Math.cos( ( PI2 / c ) * ( i + ( deg + offset ) ) ) * r ;
+          y = cy + Math.sin( ( PI2 / c ) * ( i + ( deg + offset ) ) ) * r ; 
+          if (i === 0){ ctx.moveTo(x,y); }
+          else             { ctx.lineTo(x,y); }
+          pts.push([x,y]);
+        };
+           
+        ctx.lineTo(pts[0][0],pts[0][1]); // drawing final line after loop ! 
+        ctx.closePath(); 
+
+
+        ctx.fill();
+
+        // c.fillStyle = '#ccddff';
+// c.beginPath();
+// c.moveTo(50,20);
+// c.lineTo(200,50);
+// c.lineTo(150,80);
+// c.closePath();
+// c.fill();
+// c.strokeStyle = 'rgb(0,128,0)';
+// c.lineWidth = 5;
+// c.stroke();
+
+    return pts; // still returning points for more fun
+    }
 
   Game.prototype.step = function() {
     this.move();
