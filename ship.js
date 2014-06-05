@@ -28,35 +28,24 @@
   Ship.prototype.turn = function (degrees) {
     this.degrees += degrees;
     
-    if (this.degrees >= 360) {
-      this.degrees -= 360;
-    } else if (this.degrees <= -360) {
-      this.degrees += 360; 
+    if (this.degrees >= 180) {
+      this.degrees -= 180;
+    } else if (this.degrees <= -180) {
+      this.degrees += 180; 
     }
   }
 
   Ship.prototype.fireBullet = function(game) {
     var ship = this;
     var bulletSpeed = 15;
-    // var vx = this.vel[0];
-    // var vy = this.vel[1];
 
-    // if (vx === 0 && vy === 0) {
-    //   return false;
-    // }
-    // else{
-      // var speed = Math.sqrt(Math.pow(vx, 2) + Math.pow(vy, 2));
-      // var bulletSpeedX = Math.floor((vx / speed) * bulletSpeed);
-      var bulletSpeedX = Math.floor(bulletSpeed * Math.sin(this.degrees / 90 * Math.PI));
-      // var bulletSpeedY = Math.floor((vy / speed) * bulletSpeed);
-      var bulletSpeedY = Math.floor(bulletSpeed * -Math.cos(this.degrees / 90 * Math.PI));
-      var bulletVelocity = [bulletSpeedX, bulletSpeedY];
-      return (new Asteroids.Bullet(ship.pos.slice(), bulletVelocity, game));
-    // }
+    var bulletSpeedX = Math.floor(bulletSpeed * Math.sin(this.degrees / 90 * Math.PI));
+    var bulletSpeedY = Math.floor(bulletSpeed * -Math.cos(this.degrees / 90 * Math.PI));
+    var bulletVelocity = [bulletSpeedX, bulletSpeedY];
+    return (new Asteroids.Bullet(ship.pos.slice(), bulletVelocity, game));
   }
 
   Ship.prototype.draw = function (ctx,cx,cy,r,c,offset,d,a) {
-    // debugger
     a = this.degrees;
     r = Ship.RADIUS + 2;
     cx = this.pos[0];

@@ -142,11 +142,6 @@
     this.ctx.font = "20px Arial";
     this.playTime = Math.round(this.playTime * 100) / 100;
 
-    // var mod = Math.round((this.playTime % 4) * 100) / 100;
-    // if (mod < 0.03 && this.playTime !== 0) {
-    //   this.addAsteroids(1);
-    // }
-
     var mod = Math.round((this.playTime % 2) * 100) / 100;
     if (mod < 0.03 && this.playTime !== 0) {
       this.addAsteroids(Math.round(this.playTime/3));
