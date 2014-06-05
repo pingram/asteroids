@@ -6,9 +6,9 @@
     Asteroids.MovingObject.call(this, pos, vel, radius, Asteroid.COLOR)
   };
 
-  Asteroid.RADIUS = 25;
+  Asteroid.RADIUS = 50;
   Asteroid.COLOR = '#888888';
-  Asteroid.MAXVEL = 7;
+  Asteroid.MAXVEL = 3;
 
   Asteroid.inherits(Asteroids.MovingObject);
 

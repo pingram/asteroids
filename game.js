@@ -16,6 +16,9 @@
     this.img = new Image();
     this.img.src = 'stars-night.jpg';
     this.playTime = 0;
+    this.lastBulletTime = 0;
+
+    this.offset = 0;
   };
 
   Game.FPS = 30;
@@ -96,28 +99,57 @@
       bullet.draw(ctx);
     });
 
-    this.ship.draw(ctx);
+    this.ship.draw(ctx, 300, 300, 20, 0, 0, false, 0);
+
+    // this.drawPoly(ctx, 300, 300, 20, 0, 0, false, this.offset, 0);
   };
 
+  Game.prototype.checkDownKeys = function () {
+    mag = 0.4; // for power
+    turn_mag = 3; // for turning
+
+    if(key.isPressed("left")) {
+      this.ship.turn(-turn_mag);
+    }
+    if(key.isPressed("right")) {
+      this.ship.turn(turn_mag);
+    }
+    if(key.isPressed("up")) {
+      game.ship.power(mag);
+    }
+    if(key.isPressed("down")) {
+      game.ship.power(-mag);
+    }
+
+    if(key.isPressed("space")) {
+      // add last bullet fired time
+      // if (this.playTime % 0.2 > 0.17) {
+      if (this.playTime - this.lastBulletTime >= 0.2) {
+        game.fireBullet();
+        this.lastBulletTime = this.playTime;
+      }
+      // }
+    }
+  }
+
   Game.prototype.step = function() {
+    this.checkDownKeys()
     this.move();
 
     var numAsteroidsRemoved = this.removeOOBAsteroids();
-    this.addAsteroids(numAsteroidsRemoved);
+    // this.addAsteroids(numAsteroidsRemoved);
 
     this.draw();
 
     this.ctx.font = "20px Arial";
 
     this.playTime = Math.round(this.playTime * 100) / 100;
-    // if (playTime >= 2) {
-      // debugger
-    // }
-    var mod = Math.round((this.playTime % 4) * 100) / 100;
+
+    var mod = Math.round((this.playTime % 2) * 100) / 100;
     if (mod < 0.03 && this.playTime !== 0) {
-      this.addAsteroids(1);
+      this.addAsteroids(Math.round(this.playTime/3));
     }
-    // debugger
+
     this.ctx.fillText("Time: " + this.playTime, 20, 25);
     this.ctx.fillText("Asteroids: " + this.asteroids.length, 20, 50);
 
@@ -156,7 +188,6 @@
 
   Game.prototype.start = function() {
     game = this;
-    this.bindKeyHandlers();
     game.ctx.drawImage(this.img, 0, 0);
 
     game.timerID = window.setInterval(function() {
@@ -173,33 +204,4 @@
     window.clearInterval(this.timerID);
     this.gameUI.stopGame();
   }
-
-  Game.prototype.bindKeyHandlers = function(){
-    game = this;
-    mag = 3;
-    key('up', function() {
-      game.ship.power([0, -mag]);
-    });
-    key('down', function() {
-      game.ship.power([0, mag]);
-    });
-    key('left', function() {
-      game.ship.power([-mag, 0]);
-    });
-    key('right', function() {
-      game.ship.power([mag, 0]);
-    });
-    key('space', function() {
-      game.fireBullet();
-    });
-  };
 })(this);
-
-
-
-
-
-
-
-
-
