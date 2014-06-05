@@ -134,14 +134,12 @@
 
     this.ctx.font = "20px Arial";
     this.playTime = Math.round(this.playTime * 100) / 100;
-    // if (playTime >= 2) {
-      // debugger
-    // }
+
     var mod = Math.round((this.playTime % 4) * 100) / 100;
     if (mod < 0.03 && this.playTime !== 0) {
       this.addAsteroids(1);
     }
-    // debugger
+    
     this.ctx.fillText("Time: " + this.playTime, 20, 25);
     this.ctx.fillText("Asteroids: " + this.asteroids.length, 20, 50);
 
@@ -180,7 +178,6 @@
 
   Game.prototype.start = function() {
     game = this;
-    this.bindKeyHandlers();
     game.ctx.drawImage(this.img, 0, 0);
 
     game.timerID = window.setInterval(function() {
@@ -197,49 +194,4 @@
     window.clearInterval(this.timerID);
     this.gameUI.stopGame();
   }
-
-  Game.prototype.bindKeyHandlers = function(){
-    game = this;
-    mag = 0.4; // for power
-    turn_mag = 1; // for turning
-
-    // key('up', function() {
-    //   game.ship.power([0, -mag]);
-    // });
-    // key('down', function() {
-    //   game.ship.power([0, mag]);
-    // });
-    // key('left', function() {
-    //   game.ship.power([-mag, 0]);
-    // });
-    // key('right', function() {
-    //   game.ship.power([mag, 0]);
-    // });
-
-    // key('up', function() {
-    //   game.ship.power(mag);
-    // });
-    // key('down', function() {
-    //   game.ship.power(-mag);
-    // });
-    // key('left', function() {
-    //   game.ship.turn(-turn_mag);
-    // });
-    // key('right', function() {
-    //   game.ship.turn(turn_mag);
-    // });
-
-    key('space', function() {
-      game.fireBullet();
-    });
-  };
 })(this);
-
-
-
-
-
-
-
-
-

@@ -12,12 +12,17 @@
   Ship.COLOR = 'green';
 
   Ship.prototype.power = function(impulse) {
+    var max_vel = 5;
     // this.vel[0] += impulse[0];
     // this.vel[1] += impulse[1];
 
     this.vel[0] += impulse * Math.sin(this.degrees / 90 * Math.PI);
     this.vel[1] += -impulse * Math.cos(this.degrees / 90 * Math.PI);
-    debugger
+
+    this.vel[0] = Math.min(this.vel[0], max_vel);
+    this.vel[0] = Math.max(this.vel[0], -max_vel);
+    this.vel[1] = Math.min(this.vel[1], max_vel);
+    this.vel[1] = Math.max(this.vel[1], -max_vel);
   };
 
   Ship.prototype.turn = function (degrees) {
