@@ -101,7 +101,30 @@
     // this.drawPoly(ctx, 300, 300, 20, 0, 0, false, this.offset, 0);
   };
 
+  Game.prototype.checkDownKeys = function () {
+    mag = 0.4; // for power
+    turn_mag = 2; // for turning
+
+    if(key.isPressed("left")) {
+      this.ship.turn(-turn_mag);
+    }
+    if(key.isPressed("right")) {
+      this.ship.turn(turn_mag);
+    }
+    if(key.isPressed("up")) {
+      game.ship.power(mag);
+    }
+    if(key.isPressed("down")) {
+      game.ship.power(-mag);
+    }
+
+    if(key.isPressed("space")) {
+      game.fireBullet();
+    }
+  }
+
   Game.prototype.step = function() {
+    this.checkDownKeys()
     this.move();
 
     var numAsteroidsRemoved = this.removeOOBAsteroids();
@@ -177,19 +200,35 @@
 
   Game.prototype.bindKeyHandlers = function(){
     game = this;
-    mag = 3;
-    key('up', function() {
-      game.ship.power([0, -mag]);
-    });
-    key('down', function() {
-      game.ship.power([0, mag]);
-    });
-    key('left', function() {
-      game.ship.power([-mag, 0]);
-    });
-    key('right', function() {
-      game.ship.power([mag, 0]);
-    });
+    mag = 0.4; // for power
+    turn_mag = 1; // for turning
+
+    // key('up', function() {
+    //   game.ship.power([0, -mag]);
+    // });
+    // key('down', function() {
+    //   game.ship.power([0, mag]);
+    // });
+    // key('left', function() {
+    //   game.ship.power([-mag, 0]);
+    // });
+    // key('right', function() {
+    //   game.ship.power([mag, 0]);
+    // });
+
+    // key('up', function() {
+    //   game.ship.power(mag);
+    // });
+    // key('down', function() {
+    //   game.ship.power(-mag);
+    // });
+    // key('left', function() {
+    //   game.ship.turn(-turn_mag);
+    // });
+    // key('right', function() {
+    //   game.ship.turn(turn_mag);
+    // });
+
     key('space', function() {
       game.fireBullet();
     });

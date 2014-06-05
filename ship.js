@@ -3,6 +3,7 @@
 
   var Ship = Asteroids.Ship = function(pos){
     Asteroids.MovingObject.call(this, pos, [0,0], Ship.RADIUS, Ship.COLOR);
+    this.degrees = 0;  // 0 points up, and it is in degrees
   };
 
   Ship.inherits(Asteroids.MovingObject);
@@ -11,9 +12,17 @@
   Ship.COLOR = 'green';
 
   Ship.prototype.power = function(impulse) {
-    this.vel[0] += impulse[0];
-    this.vel[1] += impulse[1];
+    // this.vel[0] += impulse[0];
+    // this.vel[1] += impulse[1];
+
+    this.vel[0] += impulse * Math.sin(this.degrees / 90 * Math.PI);
+    this.vel[1] += -impulse * Math.cos(this.degrees / 90 * Math.PI);
+    debugger
   };
+
+  Ship.prototype.turn = function (degrees) {
+    this.degrees += degrees;
+  }
 
   Ship.prototype.fireBullet = function(game) {
     var ship = this;
@@ -35,6 +44,7 @@
 
   Ship.prototype.draw = function (ctx,cx,cy,r,c,offset,d,a) {
     // debugger
+    a = this.degrees;
     r = Ship.RADIUS + 2;
     cx = this.pos[0];
     cy = this.pos[1];
