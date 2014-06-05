@@ -27,11 +27,17 @@
 
   Ship.prototype.turn = function (degrees) {
     this.degrees += degrees;
+    
+    if (this.degrees >= 360) {
+      this.degrees -= 360;
+    } else if (this.degrees <= -360) {
+      this.degrees += 360; 
+    }
   }
 
   Ship.prototype.fireBullet = function(game) {
     var ship = this;
-    var bulletSpeed = 30;
+    var bulletSpeed = 15;
     // var vx = this.vel[0];
     // var vy = this.vel[1];
 

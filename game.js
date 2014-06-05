@@ -16,6 +16,7 @@
     this.img = new Image();
     this.img.src = 'stars-night.jpg';
     this.playTime = 0;
+    this.lastBulletTime = 0;
 
     this.offset = 0;
   };
@@ -119,7 +120,13 @@
     }
 
     if(key.isPressed("space")) {
-      game.fireBullet();
+      // add last bullet fired time
+      // if (this.playTime % 0.2 > 0.17) {
+      if (this.playTime - this.lastBulletTime >= 0.2) {
+        game.fireBullet();
+        this.lastBulletTime = this.playTime;
+      }
+      // }
     }
   }
 
@@ -128,16 +135,21 @@
     this.move();
 
     var numAsteroidsRemoved = this.removeOOBAsteroids();
-    this.addAsteroids(numAsteroidsRemoved);
+    // this.addAsteroids(numAsteroidsRemoved);
 
     this.draw();
 
     this.ctx.font = "20px Arial";
     this.playTime = Math.round(this.playTime * 100) / 100;
 
-    var mod = Math.round((this.playTime % 4) * 100) / 100;
+    // var mod = Math.round((this.playTime % 4) * 100) / 100;
+    // if (mod < 0.03 && this.playTime !== 0) {
+    //   this.addAsteroids(1);
+    // }
+
+    var mod = Math.round((this.playTime % 2) * 100) / 100;
     if (mod < 0.03 && this.playTime !== 0) {
-      this.addAsteroids(1);
+      this.addAsteroids(Math.round(this.playTime/3));
     }
 
     this.ctx.fillText("Time: " + this.playTime, 20, 25);
