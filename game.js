@@ -103,7 +103,7 @@
 
   Game.prototype.checkDownKeys = function () {
     mag = 0.4; // for power
-    turn_mag = 2; // for turning
+    turn_mag = 3; // for turning
 
     if(key.isPressed("left")) {
       this.ship.turn(-turn_mag);
@@ -139,7 +139,7 @@
     if (mod < 0.03 && this.playTime !== 0) {
       this.addAsteroids(1);
     }
-    
+
     this.ctx.fillText("Time: " + this.playTime, 20, 25);
     this.ctx.fillText("Asteroids: " + this.asteroids.length, 20, 50);
 
