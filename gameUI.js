@@ -43,13 +43,13 @@
 
   GameUI.prototype.removeKeyBindings = function () {
     key.unbind('p');
-    key.unbind('x');
+    key.unbind('e');
   }
 
   GameUI.prototype.addKeyBindings = function () {
     var gameUI = this;
     key('p', function () { gameUI.startGame(); });
-    key('x', function () { window.location.href = 'http://pingram.co/'; });
+    key('e', function () { window.location.href = 'http://pingram.co/'; });
   }
 
   GameUI.prototype.stopGame = function () {

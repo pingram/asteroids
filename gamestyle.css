@@ -28,6 +28,7 @@ canvas {
   border: 3px solid green;
   padding: 20px;
   text-align: center;
+  font-size: 28px;
 }
 
 @media screen and (max-width: 800px) {
@@ -39,19 +40,21 @@ canvas {
 
 @media screen and (min-width: 800px) {
   #dialog {
-    left: 40%;
-    width: 20%;
+    left: 36%;
+    width: 28%;
   }
 }
 
 button {
   display: block;
   position: relative;
-  width: 50px;
+  width: 80px;
   margin: 10px auto;
+  padding: 5px;
   background: black;
   color: green;
   border: 1px solid green;
+  font-size: 18px;
 }
 
 button:hover {
@@ -62,4 +65,8 @@ button:hover {
 
 a, a:hover {
   text-decoration: none;
+}
+
+.underline {
+  text-decoration: underline;
 }
