@@ -23,7 +23,6 @@ canvas {
   display: none;
   position: absolute;
   top: 30%;
-  /*height: 100px;*/
   color: green;
   border: 3px solid green;
   padding: 20px;

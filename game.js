@@ -101,7 +101,9 @@
 
     this.ship.draw(ctx, 300, 300, 20, 0, 0, false, 0);
 
-    // this.drawPoly(ctx, 300, 300, 20, 0, 0, false, this.offset, 0);
+    this.ctx.font = "20px Arial";
+    this.ctx.fillText("Time: " + this.playTime, 20, 25);
+    this.ctx.fillText("Asteroids: " + this.asteroids.length, 20, 50);
   };
 
   Game.prototype.checkDownKeys = function () {
@@ -122,13 +124,10 @@
     }
 
     if(key.isPressed("space")) {
-      // add last bullet fired time
-      // if (this.playTime % 0.2 > 0.17) {
       if (this.playTime - this.lastBulletTime >= 0.2) {
         game.fireBullet();
         this.lastBulletTime = this.playTime;
       }
-      // }
     }
   }
 
@@ -139,19 +138,15 @@
     var numAsteroidsRemoved = this.removeOOBAsteroids();
     // this.addAsteroids(numAsteroidsRemoved);
 
-    this.draw();
-
-    this.ctx.font = "20px Arial";
-
     this.playTime = Math.round(this.playTime * 100) / 100;
 
-    var mod = Math.round((this.playTime % 2) * 100) / 100;
-    if (mod < 0.03 && this.playTime !== 0) {
-      this.addAsteroids(Math.round(this.playTime/3));
-    }
+    this.draw();
 
-    this.ctx.fillText("Time: " + this.playTime, 20, 25);
-    this.ctx.fillText("Asteroids: " + this.asteroids.length, 20, 50);
+    var mod = Math.round((this.playTime % 1) * 100) / 100;
+    if (mod < 0.03 && this.playTime !== 0) {
+      // this.addAsteroids(Math.round(this.playTime/3));
+      this.addAsteroids(Math.round(Math.log(this.playTime) + 1));
+    }
 
     this.checkCollisions();
     this.checkOutOfBounds();
