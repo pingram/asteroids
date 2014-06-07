@@ -5,6 +5,7 @@
     this.setUpDisplay();
     this.showDialog();
     this.installClickHandlers();
+    this.addKeyBindings();
   }
 
   GameUI.prototype.setUpDisplay = function () {
@@ -28,20 +29,33 @@
   GameUI.prototype.installClickHandlers = function () {
     var gameUI = this;
     $('body').on('click', '#dialog #play', function () {
-      gameUI.hideDialog();
       gameUI.startGame();
-      $('canvas').css({cursor: 'none'});
     });
   }
 
   GameUI.prototype.startGame = function () {
+    this.hideDialog();
     this.$canvas.removeClass('over');
+    $('canvas').css({cursor: 'none'});
+    this.removeKeyBindings();
     new Asteroids.Game(this, this.$canvas[0], this.width, this.height).start();
+  }
+
+  GameUI.prototype.removeKeyBindings = function () {
+    key.unbind('p');
+    key.unbind('x');
+  }
+
+  GameUI.prototype.addKeyBindings = function () {
+    var gameUI = this;
+    key('p', function () { gameUI.startGame(); });
+    key('x', function () { window.location.href = 'http://pingram.co/'; });
   }
 
   GameUI.prototype.stopGame = function () {
     $('canvas').addClass('over');
     $('canvas').css({cursor: 'auto'});
     this.showDialog();
+    this.addKeyBindings();
   }
 })(this);
