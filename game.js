@@ -136,16 +136,16 @@
     this.move();
 
     var numAsteroidsRemoved = this.removeOOBAsteroids();
-    // this.addAsteroids(numAsteroidsRemoved);
+    this.addAsteroids(numAsteroidsRemoved);
 
     this.playTime = Math.round(this.playTime * 100) / 100;
 
     this.draw();
 
-    var mod = Math.round((this.playTime % 1) * 100) / 100;
+    var mod = Math.round((this.playTime % 4) * 100) / 100;
     if (mod < 0.03 && this.playTime !== 0) {
       // this.addAsteroids(Math.round(this.playTime/3));
-      this.addAsteroids(Math.round(Math.log(this.playTime) + 1));
+      this.addAsteroids(Math.round(0.05 * Math.log(this.playTime) + 1));
     }
 
     this.checkCollisions();
