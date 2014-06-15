@@ -36,6 +36,10 @@
   }
 
   Ship.prototype.fireBullet = function(game) {
+    var bullet_sound = new Audio("sounds/science_fiction_laser_002.mp3");
+    bullet_sound.volume = 0.2;
+    bullet_sound.play();
+
     var ship = this;
     var bulletSpeed = 15;
 

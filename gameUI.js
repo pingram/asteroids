@@ -34,6 +34,9 @@
   }
 
   GameUI.prototype.startGame = function () {
+    var sound = new Audio("sounds/strong.mp3");
+    sound.play();
+
     this.hideDialog();
     this.$canvas.removeClass('over');
     $('canvas').css({cursor: 'none'});
@@ -53,6 +56,9 @@
   }
 
   GameUI.prototype.stopGame = function () {
+    var sound = new Audio("sounds/Chewbacca Wookie Noise-SoundBible.com-1201859158.mp3");
+    sound.play();
+
     $('canvas').addClass('over');
     $('canvas').css({cursor: 'auto'});
     this.showDialog();
